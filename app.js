@@ -35,6 +35,10 @@ mongoose.connect(db.url);
 // Passport API setup
 initPassport(passport);
 
+app.use(function(req, res, next) {
+  console.log('INFLUMEDIA: %s %s', req.method, req.url);
+  next();
+});
 // Backend routes
 app.use('/', require('./routes/index'));
 app.use('/users', require('./routes/users'));
