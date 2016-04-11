@@ -10,7 +10,10 @@ var methodOverride = require('method-override');
 
 
 var routes = require('./routes/index');
+var influencersRoute = require('./routes/influencer');
+var registerRoute = require('./routes/register');
 var users = require('./routes/users');
+var loginRoute = require('./routes/login');
 
 var db = require('./configs/db');
 var app = express();
@@ -33,11 +36,12 @@ mongoose.connect(db.url);
 // API routes
 
 // Backend routes
-app.use('/users', users);
-
-// AngularJS routes
 app.use('/', routes);
-app.use('*', routes);
+app.use('/users', users);
+app.use('/register', registerRoute);
+app.use('/influencers', influencersRoute);
+app.use('/login', loginRoute);
+
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {

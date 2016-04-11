@@ -1,10 +1,9 @@
 {
-  "name": "angular",
+  "name": "influmedia-app",
   "version": "1.0.0",
   "dependencies": {
     "bootstrap": "latest",
-    "angular": "latest",
-    "angular-route": "latest",
+    "bootstrap-social": "latest",
     "ui-navbar": "^0.4.3"
   }
 }
