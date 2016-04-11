@@ -1,11 +1,21 @@
 var express = require('express');
 var router = express.Router();
+var passport = require('passport');
 
 /* GET home page. */
 router.get( '/',function(req, res, next) {
   res.render('login/index');
 });
 
+
+router.get('/instagram',
+  passport.authenticate('instagram'));
+
+router.get('/instagram/return',
+  passport.authenticate('instagram', { failureRedirect: '/login' }),
+  function(req, res) {
+    res.redirect('/');
+  });
 
 
 module.exports = router;
