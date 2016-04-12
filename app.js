@@ -7,7 +7,7 @@ var bodyParser = require('body-parser');
 var mongoose       = require('mongoose');
 var morgan = require('morgan');
 var methodOverride = require('method-override');
-var session = require('express-session')
+var session = require('express-session');
 // Passport
 var passport = require('passport');
 var initPassport = require('./passport/init');
