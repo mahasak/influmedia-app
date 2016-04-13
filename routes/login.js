@@ -4,7 +4,7 @@ var passport = require('passport');
 
 /* GET home page. */
 router.get( '/',function(req, res, next) {
-  res.render('login/index');
+  res.render('login/index',{user: req.user});
 });
 
 

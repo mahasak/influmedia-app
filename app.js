@@ -8,6 +8,7 @@ var mongoose       = require('mongoose');
 var morgan = require('morgan');
 var methodOverride = require('method-override');
 var session = require('express-session');
+var MongoStore = require('connect-mongo')(session);
 // Passport
 var passport = require('passport');
 var initPassport = require('./passport/init');
@@ -18,18 +19,27 @@ var app = express();
 app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'ejs');
 app.use(require('morgan')('combined'));
-app.use(session({ secret: 'influmedia-session-engine', cookie: { maxAge: 60000 }}))
-app.use(passport.initialize());
-app.use(passport.session());
+
+//app.use(session({ secret: 'influmedia-session-engine', cookie: { maxAge: 60000 }}))
+
 app.use(favicon(path.join(__dirname, 'public', 'favicon.ico')));
 app.use(logger('dev'));
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json({ type: 'application/vnd.api+json' }));
 app.use(cookieParser());
+app.use(session({
+    secret:  'influmedia-session-engine',
+    //name: cookie_name,
+    store: new MongoStore({ url: db.session }),
+    proxy: true,
+    resave: true,
+    saveUninitialized: true
+}));
 app.use(methodOverride('X-HTTP-Method-Override'));
 app.use(express.static(path.join(__dirname, 'public')));
-
+app.use(passport.initialize());
+app.use(passport.session());
 mongoose.connect(db.url);
 
 // Passport API setup
@@ -39,6 +49,7 @@ app.use(function(req, res, next) {
   console.log('INFLUMEDIA: %s %s', req.method, req.url);
   next();
 });
+
 // Backend routes
 app.use('/', require('./routes/index'));
 app.use('/users', require('./routes/users'));

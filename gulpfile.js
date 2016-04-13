@@ -6,14 +6,14 @@ var bs = require('browser-sync').create();
 gulp.task('browser-sync', ['nodemon'], function() {
 	bs.init(null, {
 		proxy: "http://localhost:8000",
-		browser: "chromium-browser",
-		port: 4000,
+		//browser: "chromium-browser",
+		port: 3000,
 	});
 });
 
 // the real stuff
-gulp.task('default', ['browser-sync'], function () {
-	gulp.watch('./views/**/*.jade', bs.reload);
+gulp.task('serve', ['browser-sync'], function () {
+	gulp.watch('./views/**/*.ejs', bs.reload);
 	gulp.watch('./public/**/*.js', bs.reload);
 	gulp.watch('./public/**/*.css', bs.reload);
 	gulp.watch(['./routes/**/*.js', './app.js', './bin/www'], ['bs-delay']);
@@ -35,8 +35,8 @@ gulp.task('nodemon', function (cb) {
 		//ignore: ['public/**/*.js'],
 		env: {
 			'NODE_ENV': 'development',
-			'DEBUG': 'appname:*'
-	 }
+			'DEBUG': 'influmedia-app:*'
+	    }
 	}).on('start', function () {
 		//avoid nodemon being started multiple times
 		if (!started) {
