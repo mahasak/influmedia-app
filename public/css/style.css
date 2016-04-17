@@ -139,3 +139,16 @@ body {
     margin-top: 120px;
   }
 }
+
+.register {
+    padding-top: 60px;
+    
+}
+
+.success_message{ 
+    display: none;
+}
+
+.img-circle {
+    border-radius: 50%;
+}

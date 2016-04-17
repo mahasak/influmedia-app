@@ -3,10 +3,15 @@ var router = express.Router();
 
 /* GET home page. */
 router.get( '/',function(req, res, next) {
-    console.log(req.user); 
-  res.render('landingPage/index',{user: req.user});
+    res.locals.req = req;
+    res.locals.res = res;
+    
+    res.render('landingPage/index',{
+        is_login: req.isAuthenticated
+    });
 });
-
+      
+  
 
 
 module.exports = router;

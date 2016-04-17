@@ -46,6 +46,8 @@ mongoose.connect(db.url);
 initPassport(passport);
 
 app.use(function(req, res, next) {
+  res.locals.req = req;
+  res.locals.res = res;
   console.log('INFLUMEDIA: %s %s', req.method, req.url);
   next();
 });
@@ -65,6 +67,7 @@ app.use(function(req, res, next) {
   next(err);
 });
 
+
 // error handlers
 
 // development error handler
@@ -72,7 +75,9 @@ app.use(function(req, res, next) {
 if (app.get('env') === 'development') {
   app.use(function(err, req, res, next) {
     res.status(err.status || 500);
-    res.render('error', {
+    res.locals.req = req;
+    res.locals.res = res;
+    res.render('error_dev', {
       message: err.message,
       error: err
     });
@@ -83,6 +88,8 @@ if (app.get('env') === 'development') {
 // no stacktraces leaked to user
 app.use(function(err, req, res, next) {
   res.status(err.status || 500);
+  res.locals.req = req;
+    res.locals.res = res;
   res.render('error', {
     message: err.message,
     error: {}

@@ -5,6 +5,8 @@
     "bootstrap": "latest",
     "bootstrap-social": "latest",
     "ui-navbar": "^0.4.3",
-    "handlebars": "^4.0.5"
+    "handlebars": "^4.0.5",
+    "bootstrapvalidator": "bootstrapValidator#^0.5.3",
+    "seiyria-bootstrap-slider": "^7.0.1"
   }
 }
