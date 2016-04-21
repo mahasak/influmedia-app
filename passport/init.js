@@ -20,7 +20,16 @@ module.exports = function(passport){
           console.log(err);  // handle errors!
         }
         if (!err && user !== null) {
-          done(null, user);
+          user.accessToken = accessToken;
+          user.refreshToken = refreshToken;
+          user.save(function(err) {
+            if(err) {
+              console.log(err);  // handle errors!
+            } else {
+              console.log("saving user ...");
+              done(null, user);
+            }
+          });
         } else {
             /*
             oauthID: Number,
@@ -60,6 +69,8 @@ module.exports = function(passport){
             keywords: '',
             zipcode: '',
             email: '',
+            accessToken: accessToken,
+            refreshToken: refreshToken,
             confirmed_email: false,
             created: Date.now()
           });

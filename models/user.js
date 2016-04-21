@@ -21,6 +21,8 @@ var User = mongoose.model('User', {
   zipcode: String,
   email: String,
   confirmed_email: Boolean,
+  accessToken: String,
+  refreshToken: String,
   created: Date
 });
 

@@ -17,6 +17,7 @@
     "express": "~4.13.1",
     "express-session": "^1.13.0",
     "instagram-node": "^0.5.8",
+    "instagram-node-lib": "^0.1.1",
     "jsonwebtoken": "^5.7.0",
     "method-override": "^2.3.5",
     "mongoose": "^4.4.12",

@@ -56,7 +56,7 @@ app.use(function(req, res, next) {
 app.use('/', require('./routes/index'));
 app.use('/users', require('./routes/users'));
 app.use('/register', require('./routes/register'));
-app.use('/influencers', require('./routes/influencer'));
+app.use('/influencer', require('./routes/influencer'));
 app.use('/login', require('./routes/login'));
 app.use('/logout', require('./routes/logout'));
 

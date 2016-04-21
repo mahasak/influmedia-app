@@ -64,65 +64,154 @@
         <span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span>
         <span class="sr-only">Next</span>
       </a>
-    </div><!-- /.carousel -->
-    
+    </div>
+    <!-- /.carousel -->
+    <!-- Influencer list
+    ================================================== -->
+   
     <div class="row">
-    <div class="text-center">
-    <div class="btn-group" role="group" aria-label="...">
+        <div class="text-center">
+            <div class="btn-group" role="group" aria-label="...">
         
-        <button type="button" class="btn btn-default">Location</button>
-        <button type="button" class="btn btn-default">Max Quote</button>
-        <button type="button" class="btn btn-default">Max Followers</button>
-        <div class="btn-group" role="group">
-            <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-            Categories
-            <span class="caret"></span>
-            </button>
-            <ul class="dropdown-menu">
-            <li><a href="#">Dropdown link</a></li>
-            <li><a href="#">Dropdown link</a></li>
-            </ul>
+                <button type="button" class="btn btn-default">Location</button>
+                <button type="button" class="btn btn-default">Max Quote</button>
+                <button type="button" class="btn btn-default">Max Followers</button>
+                <div class="btn-group" role="group">
+                    <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        Categories
+                        <span class="caret"></span>
+                    </button>
+                    <ul class="dropdown-menu">
+                        <li><a href="#">Dropdown link</a></li>
+                        <li><a href="#">Dropdown link</a></li>
+                    </ul>
+                </div>
+            </div>
         </div>
     </div>
-    </div>
-    </div>
-    <!--
-    <div class="container">
-		<div class="jumbotron text-center">
-			<h1>I'm a Todo-aholic <span class="label label-info">{{ todos.length }}</span></h1>
-		</div>
+    
+    <div class="container margin_60">
+	<div class="row">
+        <% for(var i=0; i < influencer.length; i++) { %>
+            <div class="col-md-4 col-sm-4 wow zoomIn" data-wow-delay="0.1s">
+					 <div class="tour_container">
+							 <div class="img_container">
+									 <a href="/influencer/detail/<%= influencer[i]._id %>">
+									 <img width="400" src="<%= influencer[i].profile_picture %>" class="img-responsive" alt="">
+									 <div class="short_info">
+											 <i class="icon_set_1_icon-44"></i><%= influencer[i].fullname %><span class="price">Followers: <%= influencer[i].followed_by %></span>
+									 </div>
+									 </a>
+							 </div>
+							 <div class="tour_title">
+									 <h3><strong><%= influencer[i].zipcode %></strong></h3>
+									 <div class="rating">
+                                        <% if (influencer[i].category == 1) { %>
+                                        Activity
+                                        <% } else if (influencer[i].category == 2) { %>
+                                        Colthes
+                                        <% } else if (influencer[i].category == 2) { %>
+                                        Hotels
+                                        <% } else if (influencer[i].category == 2) { %>
+                                        Restaurants
+                                        <% } else if (influencer[i].category == 2) { %>
+                                        Travel
+                                        <% } else { %>
+                                        Others
+                                        <% } %>
+									 </div><!-- end rating -->
+									 <div class="rating">
+										 <span class="glyphicon glyphicon-star" aria-hidden="true"></span>
+										 <span class="glyphicon glyphicon-star" aria-hidden="true"></span>
+										 <span class="glyphicon glyphicon-star" aria-hidden="true"></span>
 
-		<div id="todo-list" class="row">
-			<div class="col-sm-4 col-sm-offset-4">
+									 </div><!-- end rating -->
+									 <div class="wishlist">
 
-				
+										 	<a class="tooltip_flip tooltip-effect-1" href="javascript:void(0);">
+										 		<span class="glyphicon glyphicon-shopping-cart" aria-hidden="true"></span>
+												<span class="tooltip-content-flip"><span class="tooltip-back">
+													$<%= influencer[i].fee %>
+													</span></span>
+											</a>
+									 </div>
+							 </div>
+					 </div>
+			 </div>
+        <% } %>
+			
 
-				<div class="checkbox" ng-repeat="todo in todos">
-					<label>
-						<input type="checkbox" ng-click="deleteTodo(todo._id)"> {{ todo.text }}
-					</label>
-				</div>
+			 <div class="col-md-4 col-sm-4 wow zoomIn" data-wow-delay="0.1s">
+					 <div class="tour_container">
+							 <div class="img_container">
+									 <a href="single_tour.html">
+									 <img src="img/tour_box_1.jpg" class="img-responsive" alt="">
+									 <div class="short_info">
+											 <i class="icon_set_1_icon-44"></i>Mr.A<span class="price">Followers: 39k</span>
+									 </div>
+									 </a>
+							 </div>
+							 <div class="tour_title">
+									 <h3><strong>NEW YORK</strong></h3>
+									 <div class="rating">
+										 Restaurant, Clothing
+									 </div><!-- end rating -->
+									 <div class="rating">
+										 <span class="glyphicon glyphicon-star" aria-hidden="true"></span>
+										 <span class="glyphicon glyphicon-star" aria-hidden="true"></span>
+										 <span class="glyphicon glyphicon-star" aria-hidden="true"></span>
 
-				<p class="text-center" ng-show="loading">
-					<span class="fa fa-spinner fa-spin fa-3x"></span>
-				</p>
+									 </div><!-- end rating -->
+									 <div class="wishlist">
 
-			</div>
-		</div>
-		<div id="todo-form" class="row">
-			<div class="col-sm-8 col-sm-offset-2 text-center">
-				<form>
-					<div class="form-group">
-						<input type="text" class="form-control input-lg text-center" placeholder="I want to buy a puppy that will love me forever" ng-model="formData.text">
-					</div>
+										 	<a class="tooltip_flip tooltip-effect-1" href="javascript:void(0);">
+										 		<span class="glyphicon glyphicon-shopping-cart" aria-hidden="true"></span>
+												<span class="tooltip-content-flip"><span class="tooltip-back">
+													$100
+													</span></span>
+											</a>
+									 </div><!-- End wish list-->
+							 </div>
+					 </div><!-- End box tour -->
+			 </div><!-- End col-md-4 -->
 
-					<button type="submit" class="btn btn-primary btn-lg" ng-click="createTodo()">Add</button>
-				</form>
-			</div>
-		</div>
-      </div>
-      -->
+			 <div class="col-md-4 col-sm-4 wow zoomIn" data-wow-delay="0.1s">
+					 <div class="tour_container">
+							 <div class="img_container">
+									 <a href="single_tour.html">
+									 <img src="img/tour_box_1.jpg" class="img-responsive" alt="">
+									 <div class="short_info">
+											 <i class="icon_set_1_icon-44"></i>Mr.A<span class="price">Followers: 39k</span>
+									 </div>
+									 </a>
+							 </div>
+							 <div class="tour_title">
+									 <h3><strong>NEW YORK</strong></h3>
+									 <div class="rating">
+										 Restaurant, Clothing
+									 </div><!-- end rating -->
+									 <div class="rating">
+										 <span class="glyphicon glyphicon-star" aria-hidden="true"></span>
+										 <span class="glyphicon glyphicon-star" aria-hidden="true"></span>
+										 <span class="glyphicon glyphicon-star" aria-hidden="true"></span>
 
+									 </div><!-- end rating -->
+									 <div class="wishlist">
+
+										 	<a class="tooltip_flip tooltip-effect-1" href="javascript:void(0);">
+										 		<span class="glyphicon glyphicon-shopping-cart" aria-hidden="true"></span>
+												<span class="tooltip-content-flip"><span class="tooltip-back">
+													$100
+													</span></span>
+											</a>
+									 </div><!-- End wish list-->
+							 </div>
+					 </div><!-- End box tour -->
+			 </div><!-- End col-md-4 -->
+
+	 </div><!-- End row -->
+     
+     <!-- /.influencer list -->
     <footer>
         <% include ../partials/footer %>
     </footer>
