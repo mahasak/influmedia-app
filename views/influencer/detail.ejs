@@ -6,14 +6,35 @@
     <% include ../partials/head %>
     <Style>
     .portfolio {
-        height: 200px;
-        width: 600px;
+        height: 180px;
+        width: 800px;
     }
-    .carousel-inner > .item > img,
-  	.carousel-inner > .item > img {
+    .port_image {
+        height: 500px;
+        width: 500px;
+    }
+    
+    .carousel-inner > .item > .col-xs-6 > img,
+  	.carousel-inner > .item > .col-xs-6 > img {
       width: 70%;
       margin: auto;
   	}
+      
+      profile-form {
+        width: 550px;
+      }
+      
+      .request-form {
+        width: 550px;
+      }
+      
+      .request-field {
+        width: 300px;
+      }
+      
+      .caption-text {
+          color: #ffffff;
+      }
     </style>
 </head>
 <body>
@@ -37,15 +58,26 @@
            <% } %>
          <% } %>
       </ol>
-      <div class="carousel-inner" role="listbox">
+      <div class="carousel-inner" role="listbox" height="265">
         <% for(var i=0;i < recentImage.length; i++) { %>
         <% if ( i == 0 ) { %>
         <div class="item active">
         <% } else { %>
         <div class="item">
         <% } %>
-       
-          <img src="<%= recentImage[i].images.standard_resolution.url.replace(/^https?:/,'') %>" alt="First slide">
+        <div class="row">
+                <div class="col-xs-12 col-sm-6 col-md-8"> <img class="port_image" src="<%= recentImage[i].images.standard_resolution.url.replace(/^https?:/,'') %>" alt="First slide">
+                    <div class="carousel-caption">This is a caption</div>
+                </div>
+                <div class="col-xs-6 col-md-4 caption-text">
+                    LIKE : <%= recentImage[i].likes.count %>, 4 Month<br/>
+                    Caption: <%= recentImage[i].caption.text %>
+                    
+                    <div class="carousel-caption">This is a caption</div>
+                </div>
+            </div>
+          
+          
         </div>
         <% } %>
       </div>
@@ -59,6 +91,218 @@
       </a>
     </div>
     <div>
+    <div class="row">
+        <div class="col-sm-5 col-md-6">
+         <!-- ------------------------------- Request Form --------------------------------- -->
+        <div >
+            <table>
+                <tr>
+                    <td>
+                    	    <img width="60" height="60" class="img-circle" src="<%= doc[0].profile_picture %>" />
+                    </td>
+                   
+                    <td>
+                        &nbsp;<b><%= doc[0].username %></b> <br/>
+                        &nbsp;<%= doc[0].followed_by %> Followers<br/>
+                        &nbsp;<%= doc[0].keywords %> 
+                    </td>
+                    <td align="right">
+                        0% Campaign Completion<br/>
+                        Category: <%= doc[0].category %> <br/>
+                        <div class="rating">
+										 <span class="glyphicon glyphicon-heart" aria-hidden="true"></span>
+										 <span class="glyphicon glyphicon-heart" aria-hidden="true"></span>
+										 <span class="glyphicon glyphicon-heart" aria-hidden="true"></span>
+
+									 </div>
+                    </td>
+                </tr>
+                <tr>
+                    <td colspan="3">
+                        <%= doc[0].descript %>
+                    </td>
+                </tr>
+                <tr>
+                    <td colspan="3">&nbsp;</td>
+                </tr>
+                <tr>
+                    <td colspan="3"><b>Snapshot</b> <a href="#">(?)</a></td>
+                </tr>
+                <tr>
+                    <td valign="top">
+                    	    Average Like Rate
+                            0%
+                    </td>
+                   
+                    <td valign="top">
+                        Top Like Location<br/>
+                        1)<br/>
+                        2)<br/>
+                        3)<br/>
+                        4)<br/>
+                        5)<br/>
+                    </td>
+                    <td align="right" valign="top">
+                       Top Influencers<br/>
+                       1)<br/>
+                       2)<br/>
+                       3)<br/>
+                       4)<br/>
+                       5)<br/>
+                    </td>
+                </tr>
+                 <tr>
+                    <td colspan="3">
+                    <div class="rating">Exposure:
+										 <span class="glyphicon glyphicon-heart" aria-hidden="true"></span>
+										 <span class="glyphicon glyphicon-heart" aria-hidden="true"></span>
+										 <span class="glyphicon glyphicon-heart" aria-hidden="true"></span>
+
+									 </div>
+                    </td>
+                </tr>
+                 <tr>
+                    <td colspan="3">
+                    <div class="rating">Ease:
+										 <span class="glyphicon glyphicon-heart" aria-hidden="true"></span>
+										 <span class="glyphicon glyphicon-heart" aria-hidden="true"></span>
+										 <span class="glyphicon glyphicon-heart" aria-hidden="true"></span>
+
+									 </div>
+                    </td>
+                </tr>
+                 <tr>
+                    <td colspan="3">
+                    <div class="rating">Value:
+										 <span class="glyphicon glyphicon-heart" aria-hidden="true"></span>
+										 <span class="glyphicon glyphicon-heart" aria-hidden="true"></span>
+										 <span class="glyphicon glyphicon-heart" aria-hidden="true"></span>
+
+									 </div>
+                    </td>
+                </tr>
+                
+                
+            </table>
+       	</div> 
+        </div>
+        <div class="col-sm-5 col-sm-offset-2 col-md-6 col-md-offset-0">
+        <!-- -------------------------------------- Request Form----------------------------------- -->
+        <div class="request-form">
+        <form class="well form-horizontal" action="/register/influencer" method="post" id="register_form">
+            <fieldset>
+                <!-- Text input-->
+                <div class="form-group">
+                    <label class="col-md-4 control-label">No. of Posts</label>
+                    <div class="col-md-4 inputGroupContainer">
+                        <div class="input-group">
+                            <span class="input-group-addon"><i class="glyphicon glyphicon-list"></i></span>
+                            <select name="noOfPost" class="form-control selectpicker">
+                                <option value="1">1</option>
+                                <option value="2">2</option>
+                                <option value="3">3</option>
+                                <option value="4">4</option>
+                                <option value="5">5</option>
+                            </select>
+                    </div>
+                    </div>
+                </div>
+
+                <!-- Text input-->
+                <div class="form-group">
+                    <label class="col-md-4 control-label">$<%= user.fee %> x 1 = </label>
+                    <div class="col-md-4 inputGroupContainer">
+                        <div class="input-group">
+                            <span class="input-group-addon"><i class="glyphicon glyphicon-usd"></i></span>
+                            <input name="fee" value="<%= user.fee %>" class="form-control" type="text">
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Text input-->
+                <div class="form-group">
+                    <label class="col-md-4 control-label">Fee <a href="#">(?)</a></label>
+                    <div class="col-md-4 inputGroupContainer">
+                        <div class="input-group">
+                            <span class="input-group-addon"><i class="glyphicon glyphicon-usd"></i></span>
+                            <input name="service_fee" value="<%= 10 %>" class="form-control" type="text">
+                        </div>
+                    </div>
+                </div>
+
+
+                <!-- Text input-->
+
+                <div class="form-group">
+                    <label class="col-md-4 control-label">Total</label>
+                    <div class="col-md-4 inputGroupContainer">
+                        <div class="input-group">
+                            <span class="input-group-addon"><i class="glyphicon glyphicon-usd"></i></span>
+                            <input name="follower" value="<%= req.user.fee %>" class="form-control" type="text" readonly>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Select Basic -->
+
+                <div class="form-group">
+                    <label class="col-md-4 control-label">Category</label>
+                    <div class="col-md-4 selectContainer request-field">
+                        <div class="input-group">
+                            <span class="input-group-addon"><i class="glyphicon glyphicon-list"></i></span>
+                            <select name="category" class="form-control selectpicker">
+                                <option value=" " >Please select your category</option>
+                                <option value="1">Activity</option>
+                                <option value="2">Colthes</option>
+                                <option value="3">Hotels</option>
+                                <option value="4">Restaurants</option>
+                                <option value="5">Travel</option>
+                                <option value="99">Others</option>
+                            </select>
+                    </div>
+                    </div>
+                </div>
+                
+                <!-- Text input-->
+
+                <div class="form-group">
+                    <label class="col-md-4 control-label">Zip Code</label>
+                    <div class="col-md-4 inputGroupContainer">
+                        <div class="input-group">
+                            <span class="input-group-addon"><i class="glyphicon glyphicon-home"></i></span>
+                            <input name="zip" placeholder="Zip Code" class="form-control" type="text">
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Text area -->
+
+                <div class="form-group">
+                    <label class="col-md-4 control-label">About Campaign</label>
+                    <div class="col-md-4 inputGroupContainer request-field">
+                        <div class="input-group">
+                            <span class="input-group-addon"><i class="glyphicon glyphicon-pencil"></i></span>
+                            <textarea class="form-control" name="bio" placeholder="Project Description"></textarea>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Success message -->
+                <div class="alert alert-success success_message" role="alert" id="register_success_message">Success <i class="glyphicon glyphicon-thumbs-up"></i> Thanks for register as influencer.</div>
+
+                <!-- Button -->
+                <div class="form-group">
+                    <label class="col-md-4 control-label"></label>
+                    <div class="col-md-4">
+                        <button type="submit" class="btn btn-warning">Request Campaign <span class="glyphicon glyphicon-send"></span></button>
+                    </div>
+                </div>
+
+            </fieldset>
+        </form>
+    </div>
+        </div>
+    </div>
 
      
      
