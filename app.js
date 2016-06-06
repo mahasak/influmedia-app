@@ -55,6 +55,7 @@ app.use(function(req, res, next) {
 // Backend routes
 app.use('/', require('./routes/index'));
 app.use('/users', require('./routes/users'));
+app.use('/account', require('./routes/account'));
 app.use('/register', require('./routes/register'));
 app.use('/influencer', require('./routes/influencer'));
 app.use('/login', require('./routes/login'));

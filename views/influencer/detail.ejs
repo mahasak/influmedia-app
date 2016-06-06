@@ -332,7 +332,9 @@ Top Influencers - the famous instagrammers (most followers on their account) the
          	   <div class="panel-heading">
               <h3 class="panel-title">Request a campaign</h3>
             </div>
-        <form class=" form-horizontal" action="/register/influencer" method="post" id="register_form">
+        <form class=" form-horizontal" action="/influencer/request" method="post" id="request_form">
+            <input name="influencer_id" value="<%= doc[0].oauthID %>" type="hidden">
+            <input name="merchant_id" value="<%= user.oauthID %>" type="hidden">
             <fieldset>
                 <div class="form-group">
                     <br/>
@@ -429,7 +431,7 @@ Max 150 Characters"><span class="glyphicon glyphicon-question-sign" aria-hidden=
                     <div class="col-md-4 inputGroupContainer request-field">
                         <div class="input-group">
                             <span class="input-group-addon"><i class="glyphicon glyphicon-pencil"></i></span>
-                            <textarea class="form-control" rows="5" name="bio" placeholder="Project Description"></textarea>
+                            <textarea class="form-control" rows="5" name="about" placeholder="Project Description"></textarea>
                         </div>
                     </div>
                 </div>
@@ -535,7 +537,18 @@ Max 150 Characters"><span class="glyphicon glyphicon-question-sign" aria-hidden=
         e.preventDefault();
         bootbox.confirm("Submit your campaign request to \"<%= doc[0].fullname %>\"?", function(result) {
             if(result){
-                //$("#register_form").submit();
+                //$("#request_form").submit();
+                //var dataString = 'name='+ name + '&email=' + email + '&phone=' + phone;
+                //alert (dataString);return false;
+                
+                 $.ajax({
+                    type: 'POST',
+                    url: '/influencer/request',
+                    data: $('#request_form').serialize(),
+                    success: function () {
+                        alert('form was submitted');
+                    }
+                });
             }        
         });
        });
